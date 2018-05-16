@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FPOutdoor", "FPOutdoor\FPOutdoor.vcxproj", "{189768A0-48ED-4694-836E-323F8BB4F83D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E5A363A2-3658-4473-9319-B84B9832DF38}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Debug|x64.ActiveCfg = Debug|x64
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Debug|x64.Build.0 = Debug|x64
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Debug|x86.ActiveCfg = Debug|Win32
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Debug|x86.Build.0 = Debug|Win32
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Release|x64.ActiveCfg = Release|x64
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Release|x64.Build.0 = Release|x64
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Release|x86.ActiveCfg = Release|Win32
+		{189768A0-48ED-4694-836E-323F8BB4F83D}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
