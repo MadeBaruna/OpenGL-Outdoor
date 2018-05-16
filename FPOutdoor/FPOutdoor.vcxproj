@@ -145,7 +145,6 @@
     <Image Include="res\kincir.png" />
     <Image Include="res\leaf.png" />
     <Image Include="res\marble.png" />
-    <Image Include="res\robot.png" />
     <Image Include="res\wood.jpg" />
   </ItemGroup>
   <ItemGroup>

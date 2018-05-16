@@ -91,9 +91,6 @@
     <Image Include="res\marble.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\robot.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\wood.jpg">
       <Filter>Resource Files</Filter>
     </Image>

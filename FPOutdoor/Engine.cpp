@@ -30,6 +30,16 @@ Shader* woodShader;
 Texture* woodTexture;
 Transform* woodTransform;
 
+Mesh* leaf2;
+Shader* leaf2Shader;
+Texture* leaf2Texture;
+Transform* leaf2Transform;
+
+Mesh* wood2;
+Shader* wood2Shader;
+Texture* wood2Texture;
+Transform* wood2Transform;
+
 Mesh* batangKincir;
 Shader* batangKincirShader;
 Texture* batangKincirTexture;
@@ -44,6 +54,16 @@ Mesh* towerBawah;
 Shader* towerBawahShader;
 Texture* towerBawahTexture;
 Transform* towerBawahTransform;
+
+Mesh* towerTengah;
+Shader* towerTengahShader;
+Texture* towerTengahTexture;
+Transform* towerTengahTransform;
+
+Mesh* towerAtas;
+Shader* towerAtasShader;
+Texture* towerAtasTexture;
+Transform* towerAtasTransform;
 
 float posCamX = 0;
 float posCamY = 2;
@@ -84,24 +104,48 @@ void Engine::Init() {
 	woodTransform = new Transform();
 	wood = Wood();
 
+	leaf2Shader = new Shader("res/Triangle");
+	leaf2Texture = new Texture("res/leaf.png");
+	leaf2Transform = new Transform();
+	leaf2Transform->pos.z = 3.5f;
+	leaf2Transform->pos.x = 0.5f;
+	leaf2 = Leaf();
+
+	wood2Shader = new Shader("res/Triangle");
+	wood2Texture = new Texture("res/wood.jpg");
+	wood2Transform = new Transform();
+	wood2 = Wood();
+
 	batangKincirShader = new Shader("res/Triangle");
 	batangKincirTexture = new Texture("res/batang.png");
 	batangKincirTransform = new Transform();
-	batangKincirTransform->pos.y = 3.5f;
-	batangKincirTransform->pos.x = 3.5f;
+	batangKincirTransform->pos.z = 0.9f;
+	batangKincirTransform->pos.y = 1.85f;
+	batangKincirTransform->pos.x = 0.5f;
 	batangKincir = BatangKincir();
 
 	kincirShader = new Shader("res/Triangle");
 	kincirTexture = new Texture("res/kincir.png");
 	kincirTransform = new Transform();
-	kincirTransform->pos.y = 3.5f;
-	kincirTransform->pos.x = 3.5f;
+	kincirTransform->pos.z = 0.9f;
+	kincirTransform->pos.y = 1.85f;
+	kincirTransform->pos.x = 0.5f;
 	kincir = Kincir();
 
 	towerBawahShader = new Shader("res/Triangle");
 	towerBawahTexture = new Texture("res/cement.png");
 	towerBawahTransform = new Transform();
 	towerBawah = TowerBawah();
+
+	towerTengahShader = new Shader("res/Triangle");
+	towerTengahTexture = new Texture("res/brick.png");
+	towerTengahTransform = new Transform();
+	towerTengah = TowerTengah();
+
+	towerAtasShader = new Shader("res/Triangle");
+	towerAtasTexture = new Texture("res/wood2.png");
+	towerAtasTransform = new Transform();
+	towerAtas = TowerAtas();
 }
 
 void Engine::DeInit() {
@@ -165,19 +209,19 @@ void Engine::ProcessInput(GLFWwindow* window) {
 		MoveCameraY(-speed);
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
 		MoveCameraXZ(speed);
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
 		MoveCameraXZ(-speed);
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
 		StrafeCamera(-speed);
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
 		StrafeCamera(speed);
 	}
 
@@ -220,7 +264,7 @@ void Engine::Update(double deltaTime) {
 }
 
 void Engine::Render() {
-	Clear(0.0f, 0.0f, 0.0f, 0.0f);
+	Clear(1.0f, 0.85f, 0.55f, 0.0f);
 
 	camera->position.x = posCamX;
 	camera->position.y = posCamY;
@@ -244,6 +288,16 @@ void Engine::Render() {
 	woodTexture->Bind();
 	wood->Draw();
 
+	leaf2Shader->Bind();
+	leaf2Shader->Update(*leaf2Transform, *camera);
+	leaf2Texture->Bind();
+	leaf2->Draw();
+		
+	wood2Shader->Bind();
+	wood2Shader->Update(*leaf2Transform, *camera);
+	wood2Texture->Bind();
+	wood2->Draw();
+
 	batangKincirShader->Bind();
 	batangKincirShader->Update(*batangKincirTransform, *camera);
 	batangKincirTexture->Bind();
@@ -258,4 +312,14 @@ void Engine::Render() {
 	towerBawahShader->Update(*towerBawahTransform, *camera);
 	towerBawahTexture->Bind();
 	towerBawah->Draw();
+
+	towerTengahShader->Bind();
+	towerTengahShader->Update(*towerTengahTransform, *camera);
+	towerTengahTexture->Bind();
+	towerTengah->Draw();
+
+	towerAtasShader->Bind();
+	towerAtasShader->Update(*towerAtasTransform, *camera);
+	towerAtasTexture->Bind();
+	towerAtas->Draw();
 }
