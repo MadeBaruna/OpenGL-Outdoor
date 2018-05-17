@@ -33,7 +33,7 @@ void Display::Start(int width, int height, const char* title, bool vsync, bool f
 	// if not fullscreen, set window position on center of screen
 	if (!fullscreen) {
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-		glfwSetWindowPos(window, mode->width / 4, mode->height / 4);
+		glfwSetWindowPos(window, mode->width / 4, mode->height / 8);
 	}
 
 	// set context
