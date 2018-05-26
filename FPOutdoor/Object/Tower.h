@@ -39,7 +39,6 @@ static Mesh* TowerAtas() {
 		16, 18, 19,
 	};
 
-	std::cout << "Tower Atas" << std::endl;
 	return new Mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
 }
 

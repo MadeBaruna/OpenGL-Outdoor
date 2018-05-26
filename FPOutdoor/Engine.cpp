@@ -10,6 +10,7 @@
 #include "Object\Tower.h"
 #include "Object\Car.h"
 #include "Object\Rumah.h"
+#include "Object\Box.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -111,6 +112,11 @@ Mesh* door;
 Shader* doorShader;
 Texture* doorTexture;
 Transform* doorTransform;
+
+Mesh* skybox;
+Shader* skyboxShader;
+Texture* skyboxTexture;
+Transform* skyboxTransform;
 
 Light* light;
 
@@ -284,6 +290,13 @@ void Engine::Init() {
 	doorTransform->pos.y = 0.5f;
 	doorTransform->scale = glm::vec3(0.5, 0.5, 0.5);
 	door = Pintu();
+
+	skyboxShader = new Shader("res/Texture");
+	skyboxTexture = new Texture("res/skybox.png");
+	skyboxTransform = new Transform();
+	skyboxTransform->scale = glm::vec3(50, 50, 50);
+	skyboxTransform->pos.y = -5.0f;
+	skybox = Box();
 }
 
 void Engine::DeInit() {
@@ -519,4 +532,9 @@ void Engine::Render() {
 	doorShader->Update(*doorTransform, *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 	doorTexture->Bind();
 	door->Draw();
+
+	skyboxShader->Bind();
+	skyboxShader->Update(*skyboxTransform, *camera, glm::vec3(-0.2f, -1.0f, -0.2f));
+	skyboxTexture->Bind();
+	skybox->Draw();
 }

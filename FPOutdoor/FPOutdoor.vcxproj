@@ -153,6 +153,7 @@
     <Image Include="res\marble.png" />
     <Image Include="res\metal.jpg" />
     <Image Include="res\roof.jpg" />
+    <Image Include="res\skybox.jpg" />
     <Image Include="res\wood.jpg" />
     <Image Include="res\wood2.png" />
   </ItemGroup>

@@ -19,15 +19,12 @@ Mesh::Mesh(Vertex *vertices, unsigned int numVertices, unsigned int* indices, un
 	normals.reserve(numVertices);
 	normals.resize(numVertices);
 
-	std::cout << generateNormal << std::endl;
-
 	for (int i = 0; i < numVertices; i++) {
 		positions.push_back(vertices[i].pos);
 		texCoords.push_back(vertices[i].texCoord);
 
 		if (!generateNormal) {
 			normals.push_back(vertices[i].normal);
-			std::cout << glm::to_string(vertices[i].normal) << std::endl;
 		}
 	}
 
@@ -38,7 +35,6 @@ Mesh::Mesh(Vertex *vertices, unsigned int numVertices, unsigned int* indices, un
 				normals[indices[i]] = normal;
 				normals[indices[i + 1]] = normal;
 				normals[indices[i + 2]] = normal;
-				std::cout << glm::to_string(normal) << std::endl;
 			}
 		}
 	}
@@ -64,9 +60,6 @@ Mesh::Mesh(Vertex *vertices, unsigned int numVertices, unsigned int* indices, un
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * numIndices, &indices[0], GL_STATIC_DRAW);
 
 	glBindVertexArray(0); 
-
-	std::cout << "end" << std::endl;
-
 }
 
 Mesh::~Mesh()
