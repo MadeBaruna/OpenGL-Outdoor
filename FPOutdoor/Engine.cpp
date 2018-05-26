@@ -4,12 +4,12 @@
 #include "Texture.h"
 #include "Transform.h"
 #include "Camera.h"
-#include "Object\Plane.cpp"
-#include "Object\Tree.cpp"
-#include "Object\Kincir.cpp"
-#include "Object\Tower.cpp"
-#include "Object\Car.cpp"
-#include "Object\Rumah.cpp"
+#include "Object\Plane.h"
+#include "Object\Tree.h"
+#include "Object\Kincir.h"
+#include "Object\Tower.h"
+#include "Object\Car.h"
+#include "Object\Rumah.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -102,6 +102,8 @@ Shader* tembokShader;
 Texture* tembokTexture;
 Transform* tembokTransform;
 
+Light* light;
+
 float posCamX = 0;
 float posCamY = 2;
 float posCamZ = 5;
@@ -125,18 +127,23 @@ void Engine::Init() {
 	glfwSetKeyCallback(window, key_callback);
 
 	camera = new Camera(glm::vec3(posCamX, 0, posCamZ), 70.0f, (GLfloat)this->screenWidth / (GLfloat)this->screenHeight, 0.1f, 100.0f);
+
+	light = new Light();
+	light->x = 0.5f;
+	light->y = -0.6f;
+	light->z = -0.2f;
 	
 	planeShader = new Shader("res/Triangle");
 	planeTexture = new Texture("res/grass.png", GL_LINEAR_MIPMAP_NEAREST);
 	planeTransform = new Transform();
 	plane = Plane();
 
-	roadShader = new Shader("res/Triangle");
+	roadShader = new Shader("res/Texture");
 	roadTexture = new Texture("res/dirtroad.png", GL_LINEAR_MIPMAP_NEAREST);
 	roadTransform = new Transform();
 	road = Road();
 
-	leafShader = new Shader("res/Triangle");
+	leafShader = new Shader("res/Texture");
 	leafTexture = new Texture("res/leaf.png");
 	leafTransform = new Transform();
 	leafTransform->pos.z = 3.0f;
@@ -147,7 +154,7 @@ void Engine::Init() {
 	woodTransform = new Transform();
 	wood = Wood();
 
-	leaf2Shader = new Shader("res/Triangle");
+	leaf2Shader = new Shader("res/Texture");
 	leaf2Texture = new Texture("res/leaf.png");
 	leaf2Transform = new Transform();
 	leaf2Transform->pos.z = 3.5f;
@@ -159,7 +166,7 @@ void Engine::Init() {
 	wood2Transform = new Transform();
 	wood2 = Wood();
 
-	leaf3Shader = new Shader("res/Triangle");
+	leaf3Shader = new Shader("res/Texture");
 	leaf3Texture = new Texture("res/leaf.png");
 	leaf3Transform = new Transform();
 	leaf3Transform->pos.z = -1.0f;
@@ -202,7 +209,7 @@ void Engine::Init() {
 	towerAtasTransform = new Transform();
 	towerAtas = TowerAtas();
 
-	carShader = new Shader("res/Triangle");
+	carShader = new Shader("res/Texture");
 	carTexture = new Texture("res/metal.jpg");
 	carTransform = new Transform();
 	carTransform->rotation.y = (float)glm::radians(-90.0f);
@@ -244,8 +251,10 @@ void Engine::Init() {
 	tembokShader = new Shader("res/Triangle");
 	tembokTexture = new Texture("res/brick.png");
 	tembokTransform = new Transform();
-	tembokTransform->pos.x = 2.0f;
-	tembokTransform->pos.y = 1.0f;
+	tembokTransform->pos.x = 3.0f;
+	tembokTransform->pos.z = 0.5f;
+	tembokTransform->pos.y = 0.5f;
+	tembokTransform->scale = glm::vec3(0.5, 0.5, 0.5);
 	tembok = TembokRumah();
 }
 
@@ -390,86 +399,86 @@ void Engine::Render() {
 
 	planeTexture->Bind();
 	planeShader->Bind();
-	planeShader->Update(*planeTransform, *camera);
+	planeShader->Update(*planeTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	plane->Draw();
 
 	roadTexture->Bind();
 	roadShader->Bind();
-	roadShader->Update(*roadTransform, *camera);
+	roadShader->Update(*roadTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	road->Draw();
 
 	leafShader->Bind();
-	leafShader->Update(*leafTransform, *camera);
+	leafShader->Update(*leafTransform, *camera, glm::vec3(-0.2f, -1.0f, -0.2f));
 	leafTexture->Bind();
 	leaf->Draw();
 
 	woodShader->Bind();
-	woodShader->Update(*leafTransform, *camera);
+	woodShader->Update(*leafTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	woodTexture->Bind();
 	wood->Draw();
 
 	leaf2Shader->Bind();
-	leaf2Shader->Update(*leaf2Transform, *camera);
+	leaf2Shader->Update(*leaf2Transform, *camera, glm::vec3(-0.2f, -1.0f, -0.2f));
 	leaf2Texture->Bind();
 	leaf2->Draw();
 		
 	wood2Shader->Bind();
-	wood2Shader->Update(*leaf2Transform, *camera);
+	wood2Shader->Update(*leaf2Transform, *camera, glm::vec3(light->x, light->y, light->z));
 	wood2Texture->Bind();
 	wood2->Draw();
 
 	leaf3Shader->Bind();
-	leaf3Shader->Update(*leaf3Transform, *camera);
+	leaf3Shader->Update(*leaf3Transform, *camera, glm::vec3(-0.2f, -1.0f, -0.2f));
 	leaf3Texture->Bind();
 	leaf3->Draw();
 		
 	wood3Shader->Bind();
-	wood3Shader->Update(*leaf3Transform, *camera);
+	wood3Shader->Update(*leaf3Transform, *camera, glm::vec3(light->x, light->y, light->z));
 	wood3Texture->Bind();
 	wood3->Draw();
 
 	batangKincirShader->Bind();
-	batangKincirShader->Update(*batangKincirTransform, *camera);
+	batangKincirShader->Update(*batangKincirTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	batangKincirTexture->Bind();
 	batangKincir->Draw();
 
 	kincirShader->Bind();
-	kincirShader->Update(*kincirTransform, *camera);
+	kincirShader->Update(*kincirTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	kincirTexture->Bind();
 	kincir->Draw();
 
 	towerBawahShader->Bind();
-	towerBawahShader->Update(*towerBawahTransform, *camera);
+	towerBawahShader->Update(*towerBawahTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	towerBawahTexture->Bind();
 	towerBawah->Draw();
 
 	towerTengahShader->Bind();
-	towerTengahShader->Update(*towerTengahTransform, *camera);
+	towerTengahShader->Update(*towerTengahTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	towerTengahTexture->Bind();
 	towerTengah->Draw();
 
 	towerAtasShader->Bind();
-	towerAtasShader->Update(*towerAtasTransform, *camera);
+	towerAtasShader->Update(*towerAtasTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	towerAtasTexture->Bind();
 	towerAtas->Draw();
 
 	carShader->Bind();
-	carShader->Update(*carTransform, *camera);
+	carShader->Update(*carTransform, *camera, glm::vec3(light->x, light->y, light->z));
 	carTexture->Bind();
 	car->Draw();
 
 	carWindowShader->Bind();
-	carWindowShader->Update(*carTransform, *camera, glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
+	carWindowShader->Update(*carTransform, *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
 	carWindow->Draw();
 
 	carWheelShader->Bind();
 	for (int i = 0; i < carWheels.size(); i++) {
-		carWheelShader->Update(*carWheelTransforms[i], *camera, glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+		carWheelShader->Update(*carWheelTransforms[i], *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 		carWheels[i]->Draw();
 	}
 
 	tembokShader->Bind();
-	tembokShader->Update(*tembokTransform, *camera);
+	tembokShader->Update(*tembokTransform, *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 	tembokTexture->Bind();
 	tembok->Draw();
 }

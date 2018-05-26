@@ -59,25 +59,25 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Box.cpp">
+    <ClCompile Include="Object\Box.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Kincir.cpp">
+    <ClCompile Include="Object\Car.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Plane.cpp">
+    <ClCompile Include="Object\Kincir.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Tree.cpp">
+    <ClCompile Include="Object\Plane.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Tower.cpp">
+    <ClCompile Include="Object\Rumah.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Car.cpp">
+    <ClCompile Include="Object\Tower.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Rumah.cpp">
+    <ClCompile Include="Object\Tree.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,5 +109,7 @@
     <None Include="res\PlainTriangle.vert" />
     <None Include="res\Triangle.frag" />
     <None Include="res\Triangle.vert" />
+    <None Include="res\Texture.frag" />
+    <None Include="res\Texture.vert" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,7 @@ Shader::Shader(const std::string& fileName)
 
 	glBindAttribLocation(m_program, 0, "position");
 	glBindAttribLocation(m_program, 1, "texCoord");
+	glBindAttribLocation(m_program, 2, "normal");
 
 	glLinkProgram(m_program);
 	CheckShaderError(m_program, GL_LINK_STATUS, true, "Error linking shader program " + fileName);
@@ -24,6 +25,8 @@ Shader::Shader(const std::string& fileName)
 
 	m_uniforms[TRANSFORM_U] = glGetUniformLocation(m_program, "transform");
 	m_uniforms[COLOR_U] = glGetUniformLocation(m_program, "color");
+	m_uniforms[CAMERA_U] = glGetUniformLocation(m_program, "camera");
+	m_uniforms[LIGHT_U] = glGetUniformLocation(m_program, "lightDirU");
 }
 
 Shader::~Shader()
@@ -42,12 +45,14 @@ void Shader::Bind()
 	glUseProgram(m_program);
 }
 
-void Shader::Update(const Transform& transform, const Camera& camera, const glm::vec4& color)
+void Shader::Update(const Transform& transform, const Camera& camera, const glm::vec3& lightDir, const glm::vec4& color)
 {
 	glm::mat4 model = camera.getViewProjection() * transform.GetModel();
 
 	glUniformMatrix4fv(m_uniforms[TRANSFORM_U], 1, GL_FALSE, &model[0][0]);
 	glUniform4fv(m_uniforms[COLOR_U], 1, glm::value_ptr(color));
+	glUniform3fv(m_uniforms[CAMERA_U], 1, glm::value_ptr(camera.position));
+	glUniform3fv(m_uniforms[LIGHT_U], 1, glm::value_ptr(lightDir));
 }
 
 std::string Shader::LoadShader(const std::string& fileName)

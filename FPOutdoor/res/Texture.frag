@@ -16,14 +16,8 @@ void main()
 
 	// ambient
     float ambientStrength = 0.7;
-    vec3 ambient = vec3(0.4f, 0.4f, 0.4f) * texture(ourTexture, TexCoord).rgb;
+    vec3 ambient = vec3(0.8f, 0.8f, 0.8f) * texture(ourTexture, TexCoord).rgb;
   	
-    // diffuse 
-    vec3 norm = normalize(Normal);
-    vec3 lightDir = normalize(-lightDirU); 
-    float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = vec3(0.9f, 0.9f, 0.9f) * diff * texture(ourTexture, TexCoord).rgb;
-
-	vec3 result = ambient + diffuse;
+	vec3 result = ambient;
 	gl_FragColor = vec4(result, 1.0);
 }

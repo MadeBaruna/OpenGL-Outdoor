@@ -11,7 +11,7 @@ public:
 	Shader(const std::string& fileName);
 
 	void Bind();
-	void Update(const Transform& transform, const Camera& camera, const glm::vec4& color = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
+	void Update(const Transform& transform, const Camera& camera, const glm::vec3& lightDir = glm::vec3(-0.2f, -0.2f, -0.3f), const glm::vec4& color = glm::vec4());
 
 	virtual ~Shader();
 protected:
@@ -25,6 +25,8 @@ private:
 	{
 		TRANSFORM_U,
 		COLOR_U,
+		CAMERA_U,
+		LIGHT_U,
 
 		NUM_UNIFORMS
 	};

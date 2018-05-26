@@ -16,3 +16,8 @@ private:
 
 };
 
+struct Light {
+	float x;
+	float y;
+	float z;
+};

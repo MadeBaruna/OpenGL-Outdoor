@@ -72,7 +72,7 @@ void Display::Start(int width, int height, const char* title, bool vsync, bool f
 		glfwPollEvents();
 
 		//Debug print framerate
-		ShowFPS();
+		//ShowFPS();
 	}
 
 	DeInit();
