@@ -102,6 +102,16 @@ Shader* tembokShader;
 Texture* tembokTexture;
 Transform* tembokTransform;
 
+Mesh* atap;
+Shader* atapShader;
+Texture* atapTexture;
+Transform* atapTransform;
+
+Mesh* door;
+Shader* doorShader;
+Texture* doorTexture;
+Transform* doorTransform;
+
 Light* light;
 
 float posCamX = 0;
@@ -256,6 +266,24 @@ void Engine::Init() {
 	tembokTransform->pos.y = 0.5f;
 	tembokTransform->scale = glm::vec3(0.5, 0.5, 0.5);
 	tembok = TembokRumah();
+
+	atapShader = new Shader("res/Triangle");
+	atapTexture = new Texture("res/roof.jpg");
+	atapTransform = new Transform();
+	atapTransform->pos.x = 3.0f;
+	atapTransform->pos.z = 0.5f;
+	atapTransform->pos.y = 1.7f;
+	atapTransform->scale = glm::vec3(0.7, 0.7, 0.7);
+	atap = AtapRumah();
+
+	doorShader = new Shader("res/Triangle");
+	doorTexture = new Texture("res/door.png");
+	doorTransform = new Transform();
+	doorTransform->pos.x = 3.0f;
+	doorTransform->pos.z = 0.51f;
+	doorTransform->pos.y = 0.5f;
+	doorTransform->scale = glm::vec3(0.5, 0.5, 0.5);
+	door = Pintu();
 }
 
 void Engine::DeInit() {
@@ -481,4 +509,14 @@ void Engine::Render() {
 	tembokShader->Update(*tembokTransform, *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 	tembokTexture->Bind();
 	tembok->Draw();
+
+	atapShader->Bind();
+	atapShader->Update(*atapTransform, *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	atapTexture->Bind();
+	atap->Draw();
+
+	doorShader->Bind();
+	doorShader->Update(*doorTransform, *camera, glm::vec3(light->x, light->y, light->z), glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	doorTexture->Bind();
+	door->Draw();
 }

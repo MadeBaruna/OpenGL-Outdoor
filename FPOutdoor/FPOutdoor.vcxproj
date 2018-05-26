@@ -142,12 +142,19 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\batang.png" />
+    <Image Include="res\brick.png" />
     <Image Include="res\cement.png" />
+    <Image Include="res\dirtroad.png" />
+    <Image Include="res\door.png" />
+    <Image Include="res\grass.png" />
     <Image Include="res\head.jpg" />
     <Image Include="res\kincir.png" />
     <Image Include="res\leaf.png" />
     <Image Include="res\marble.png" />
+    <Image Include="res\metal.jpg" />
+    <Image Include="res\roof.jpg" />
     <Image Include="res\wood.jpg" />
+    <Image Include="res\wood2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\PlainTriangle.frag" />

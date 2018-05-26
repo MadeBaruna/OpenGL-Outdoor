@@ -103,6 +103,27 @@
     <Image Include="res\cement.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\dirtroad.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\door.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\metal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\roof.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\wood2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\brick.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\PlainTriangle.frag" />

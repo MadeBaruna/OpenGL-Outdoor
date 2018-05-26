@@ -2,20 +2,62 @@
 #include "../Mesh.h"
 #include <iostream>
 
+static Mesh* Pintu() {
+	Vertex vertices[] =
+	{
+		Vertex(glm::vec3(-0.5, -1, 1), glm::vec2(0, 0)),
+		Vertex(glm::vec3(-0.5, 0.5, 1),  glm::vec2(0, 1)),
+		Vertex(glm::vec3(0.5, 0.5, 1),   glm::vec2(1, 1)),
+		Vertex(glm::vec3(0.5, -1, 1),  glm::vec2(1, 0)),
+	};
+
+	unsigned int indices[] = {
+		2, 1, 0,
+		3, 2, 0,
+	};
+
+	return new Mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
+}
+
 static Mesh* AtapRumah() {
-	Vertex bodyVertices[] = {
-		// front 
-		Vertex(glm::vec3(-0.5, 0.5,  -0.5), glm::vec2(0.0, 0.0)),																														Vertex(glm::vec3(-0.5, -0.5, 0.5), glm::vec2(0.0, 0.0)),	// 8
-		Vertex(glm::vec3(-0.5, 0.5,  0.5), glm::vec2(0.0, 0.0)),																														Vertex(glm::vec3(-0.5, -0.5, 0.5), glm::vec2(0.0, 0.0)),	// 8
-		Vertex(glm::vec3(-0.25, 1,  -0.5), glm::vec2(0.0, 0.0)),																														Vertex(glm::vec3(-0.5, -0.5, 0.5), glm::vec2(0.0, 0.0)),	// 8
-		Vertex(glm::vec3(-0.25, 1,  0.5), glm::vec2(0.0, 0.0)),																														Vertex(glm::vec3(-0.5, -0.5, 0.5), glm::vec2(0.0, 0.0)),	// 8
+	Vertex vertices[] = {
+		// bottom 
+		Vertex(glm::vec3(-1, -1, -1), glm::vec2(0, 1)),
+		Vertex(glm::vec3(-1, -1, 1), glm::vec2(1, 1)),
+		Vertex(glm::vec3(1, -1, 1), glm::vec2(1, 0)),
+		Vertex(glm::vec3(1, -1, -1), glm::vec2(0, 0)),
+
+		// left
+		Vertex(glm::vec3(-1, -1, -1), glm::vec2(0, 0)),
+		Vertex(glm::vec3(-1, -1, 1), glm::vec2(1, 0)),
+		Vertex(glm::vec3(0, 0.1, 0), glm::vec2(0.5, 1)),
+
+		// front
+		Vertex(glm::vec3(-1, -1, 1), glm::vec2(0, 0)),
+		Vertex(glm::vec3(1, -1, 1), glm::vec2(1, 0)),
+		Vertex(glm::vec3(0, 0.1, 0), glm::vec2(0.5, 1)),
+
+		// right
+		Vertex(glm::vec3(1, -1, 1), glm::vec2(0, 0)),
+		Vertex(glm::vec3(1, -1, -1), glm::vec2(1, 0)),
+		Vertex(glm::vec3(0, 0.1, 0), glm::vec2(0.5, 1)),
+
+		// back
+		Vertex(glm::vec3(1, -1, -1), glm::vec2(0, 0)),
+		Vertex(glm::vec3(-1, -1, -1), glm::vec2(1, 0)),
+		Vertex(glm::vec3(0, 0.1, 0), glm::vec2(0.5, 1)),
 	};
 
-	unsigned int bodyIndices[] = {
-		0, 1, 2, 0, 2, 3,
+	unsigned int indices[] = {
+		2, 1, 0,
+		3, 2, 0,
+		4, 5, 6,
+		7, 8, 9,
+		10, 11, 12,
+		13, 14, 15,
 	};
 
-	return new Mesh(bodyVertices, sizeof(bodyVertices) / sizeof(bodyVertices[0]), bodyIndices, sizeof(bodyIndices) / sizeof(bodyIndices[0]));
+	return new Mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
 }
 
 static Mesh* TembokRumah() {
@@ -72,6 +114,5 @@ static Mesh* TembokRumah() {
 		23, 22, 20
 	};
 
-	std::cout << "tembok" << std::endl;
 	return new Mesh(vertices, sizeof(vertices) / sizeof(vertices[0]), indices, sizeof(indices) / sizeof(indices[0]));
 }
